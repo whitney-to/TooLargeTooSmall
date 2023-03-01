@@ -55,6 +55,7 @@ public class Main {
                 }
             }
         } while (userInput != expectedNumber) ;
+        scanner.close();
     }
 
     public static void main(String[] args){
