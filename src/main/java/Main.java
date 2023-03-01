@@ -51,13 +51,13 @@ public class Main {
                 } else {
                     numberGuesses++;
                     System.out.println(numberGuesses+" guesses");
-                    System.out.println("correct guess!");
+                    System.out.println("Correct guess!");
                 }
             }
         } while (userInput != expectedNumber) ;
     }
 
     public static void main(String[] args){
-                GuessingANumber();
+        GuessingANumber();
     }
 }
