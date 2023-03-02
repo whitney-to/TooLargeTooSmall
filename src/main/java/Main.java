@@ -6,24 +6,23 @@ import java.util.Scanner;
  */
 public class Main {
     public static void GuessingANumber() {
-        Scanner scanner = null;
+        Scanner scanner = new Scanner(System.in);
         int userInput = -1;
         int previousGuess = 0;
         int numberGuesses = 0;
 
         // create a random integer for user to guess
         Random randomInteger = new Random();
-        int expectedNumber = randomInteger.nextInt(101);
-        System.out.println(expectedNumber);
+        int expectedNumber = randomInteger.nextInt(100)+1;
+
         do {
             // asking for user input
             System.out.println("Guess number from 1 - 100 or enter (0) to exit: ");
-            scanner = new Scanner(System.in);
 
             // check if input is not integer, or if input > 100 or < 0
             if (!scanner.hasNextInt()) {
                 System.out.println("Invalid input, Please try again!");
-                continue;
+
             } else { // if input is integer and within range 1-100
 
                 // get user input
@@ -32,30 +31,38 @@ public class Main {
                 // if user input is out of range
                 if (userInput > 100 || userInput < 0) {
                     System.out.println("Input out of range!");
-                    continue;
+
                 } else if (userInput == 0) {
                     System.out.println("You have exited the game!");
                     return;
+
                 } else if (userInput > expectedNumber) {
                     System.out.println("Too large!");
-                    if(userInput!=previousGuess){
+
+                    //increase number of guesses if the current and previous guesses are different
+                    if(userInput != previousGuess){
                         previousGuess = userInput;
                         numberGuesses++;
                     }
+
                 } else if (userInput < expectedNumber) {
                     System.out.println("Too small!");
+
+                    //increase number of guesses if the current and previous guesses are different
                     if(userInput!=previousGuess){
                         previousGuess = userInput;
                         numberGuesses++;
                     }
-                } else {
+
+                } else { // when userInput == expectedNumber
                     numberGuesses++;
-                    System.out.println(numberGuesses+" guesses");
-                    System.out.println("Correct guess!");
+                    System.out.format("Congratulation! You did it with %s guesses!",numberGuesses);
                 }
             }
         } while (userInput != expectedNumber) ;
-        scanner.close();
+
+        //closing the scanner
+        if(scanner!=null) scanner.close();
     }
 
     public static void main(String[] args){
